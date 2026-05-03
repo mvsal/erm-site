@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ERM Consultoria e Assessoria – Licitações Públicas</title>
+  <meta name="description" content="A ERM Consultoria é especializada em assessoria para empresas que participam ou desejam participar de licitações públicas. Suporte completo, do edital ao contrato." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Jost', sans-serif;
+      font-weight: 400;
+      background: #f7f5f0;
+      color: #1a2a40;
+      overflow-x: hidden;
+    }
+
+    :root {
+      --navy:       #0b1628;
+      --navy-2:     #0f1e38;
+      --navy-3:     #162847;
+      --silver:     #b8c4d4;
+      --silver-light: #dce4ee;
+      --gold:       #b8922a;
+      --gold-light: #d4a94a;
+      --gold-pale:  #e8d49a;
+      --cream:      #f7f5f0;
+      --cream-2:    #eeeae2;
+      --text:       #1a2a40;
+      --text-muted: #5a6a7a;
+      --border:     rgba(184,146,42,0.28);
+      --border-faint: rgba(26,42,64,0.1);
+      --border-faint-light: rgba(184,196,212,0.14);
+    }
+
+    h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 600; line-height: 1.15; }
+    h1 { font-size: clamp(2.8rem, 6vw, 5rem); }
+    h2 { font-size: clamp(2rem, 4vw, 3rem); }
+    h3 { font-size: 1.3rem; }
+    p  { line-height: 1.75; }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+    .section { padding: 6rem 0; }
+    .section--light  { background: var(--cream); }
+    .section--light2 { background: var(--cream-2); }
+    .section--dark   { background: var(--navy); }
+    .section--dark2  { background: var(--navy-2); }
+
+    .label {
+      display: inline-block;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      padding: 0.35em 1em; border-radius: 2px; margin-bottom: 1.5rem;
+    }
+    .label--dark  { color: var(--gold-light); border: 1px solid var(--border); }
+    .label--light { color: var(--gold);       border: 1px solid rgba(184,146,42,0.4); }
+
+    .divider {
+      width: 60px; height: 2px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      margin: 1.5rem 0 2rem;
+    }
+    .divider--center { margin-left: auto; margin-right: auto; }
+
+    .btn {
+      display: inline-block;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.85rem; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      text-decoration: none;
+      padding: 0.9em 2.2em; border-radius: 2px;
+      transition: all 0.25s ease; cursor: pointer; border: none;
+    }
+    .btn--primary { background: var(--gold); color: #0b1628; }
+    .btn--primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(184,146,42,0.35); }
+    .btn--outline-dark  { background: transparent; color: var(--silver-light); border: 1px solid var(--border); }
+    .btn--outline-dark:hover  { border-color: var(--gold-light); color: var(--gold-light); transform: translateY(-2px); }
+    .btn--outline-light { background: transparent; color: var(--navy); border: 1px solid rgba(26,42,64,0.3); }
+    .btn--outline-light:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+    /* ══ NAV ══ */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.25rem 0; transition: background 0.35s, backdrop-filter 0.35s; }
+    nav.scrolled { background: rgba(11,22,40,0.96); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-faint-light); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { display: flex; flex-direction: column; line-height: 1; text-decoration: none; }
+    .nav-logo-letters { font-family: 'Cormorant Garamond', serif; font-size: 1.9rem; font-weight: 600; color: var(--silver-light); letter-spacing: 0.04em; }
+    .nav-logo-sub { font-family: 'Jost', sans-serif; font-size: 0.55rem; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-top: 1px; }
+    .nav-links { display: flex; align-items: center; gap: 2.5rem; list-style: none; }
+    .nav-links a { font-size: 0.8rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; color: var(--silver); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--gold-light); }
+    .nav-cta { margin-left: 1rem; }
+
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+    .hamburger span { display: block; width: 24px; height: 1.5px; background: var(--silver-light); transition: all 0.3s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+    .mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(11,22,40,0.98); z-index: 99; flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 600; color: var(--silver-light); text-decoration: none; letter-spacing: 0.06em; transition: color 0.2s; }
+    .mobile-menu a:hover { color: var(--gold-light); }
+
+    /* ══ HERO ══ */
+    #hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      background: var(--navy);
+      position: relative;
+      overflow: hidden;
+    }
+    #hero::before {
+      content: ''; position: absolute; inset: 0;
+      background-image:
+        radial-gradient(ellipse 70% 60% at 30% 50%, rgba(29,53,96,0.6) 0%, transparent 70%),
+        repeating-linear-gradient(0deg, transparent, transparent 79px, rgba(184,196,212,0.03) 79px, rgba(184,196,212,0.03) 80px),
+        repeating-linear-gradient(90deg, transparent, transparent 79px, rgba(184,196,212,0.03) 79px, rgba(184,196,212,0.03) 80px);
+      pointer-events: none;
+    }
+    .hero-left { position: relative; z-index: 1; padding: 8rem 2rem 6rem; }
+    .hero-right { position: relative; z-index: 1; display: flex; align-items: center; justify-content: center; padding: 8rem 2rem 6rem 1rem; }
+    .hero-banner-svg { width: 100%; max-width: 460px; }
+
+    .hero-eyebrow { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; }
+    .hero-eyebrow-line { width: 40px; height: 1px; background: var(--gold); }
+    .hero-eyebrow-text { font-family: 'Jost', sans-serif; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); }
+    .hero-title { color: #f5f1e8; margin-bottom: 1.75rem; }
+    .hero-title em { font-style: normal; color: var(--gold-light); }
+    .hero-sub { font-size: 1.05rem; font-weight: 300; color: var(--silver); max-width: 520px; margin-bottom: 3rem; line-height: 1.8; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    /* ══ SOBRE ══ */
+    #sobre .sobre-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .sobre-card {
+      background: white; border: 1px solid var(--border-faint); border-left: 3px solid var(--gold);
+      padding: 2.5rem; border-radius: 4px; box-shadow: 0 4px 24px rgba(26,42,64,0.06);
+    }
+    .sobre-card p { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-style: italic; color: var(--text-muted); line-height: 1.85; }
+
+    /* ══ SERVIÇOS ══ */
+    #servicos { text-align: center; }
+    .servicos-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 4px; overflow: hidden;
+    }
+    .servico-item {
+      background: var(--navy-2); padding: 2.2rem 2rem; text-align: left;
+      transition: background 0.25s; position: relative; overflow: hidden;
+    }
+    .servico-item--wide { grid-column: 1 / -1; }
+    .servico-item::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      transform: scaleX(0); transform-origin: left; transition: transform 0.35s ease;
+    }
+    .servico-item:hover { background: var(--navy-3); }
+    .servico-item:hover::after { transform: scaleX(1); }
+
+    .servico-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+    .servico-icon-wrap {
+      width: 44px; height: 44px; flex-shrink: 0;
+      background: rgba(184,146,42,0.12); border: 1px solid rgba(184,146,42,0.25);
+      border-radius: 4px; display: flex; align-items: center; justify-content: center;
+    }
+    .servico-num { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 700; color: var(--gold); }
+    .servico-item h3 { color: var(--silver-light); margin-bottom: 0.65rem; font-size: 1.1rem; }
+    .servico-item p { font-size: 0.88rem; line-height: 1.7; color: var(--silver); }
+    .svc-svg { width: 22px; height: 22px; stroke: var(--gold-light); fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* ══ DIFERENCIAIS ══ */
+    #diferenciais .diff-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .diff-list { list-style: none; }
+    .diff-list li { display: flex; gap: 1.25rem; padding: 1.4rem 0; border-bottom: 1px solid var(--border-faint); align-items: flex-start; }
+    .diff-list li:last-child { border-bottom: none; }
+    .diff-check { width: 24px; height: 24px; flex-shrink: 0; background: var(--gold); border-radius: 2px; display: flex; align-items: center; justify-content: center; margin-top: 3px; }
+    .diff-check::after { content: ''; width: 10px; height: 6px; border-left: 2px solid #0b1628; border-bottom: 2px solid #0b1628; transform: rotate(-45deg) translate(1px, -1px); }
+    .diff-title { font-family: 'Jost', sans-serif; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--navy); margin-bottom: 0.35rem; }
+    .diff-desc { font-size: 0.9rem; line-height: 1.65; margin: 0; color: var(--text-muted); }
+
+    .diff-quote { background: var(--navy); border: 1px solid var(--border); border-radius: 4px; padding: 3rem; position: relative; }
+    .diff-quote::before { content: '"'; font-family: 'Cormorant Garamond', serif; font-size: 8rem; color: var(--gold); opacity: 0.25; position: absolute; top: -1rem; left: 1.5rem; line-height: 1; }
+    .diff-quote blockquote { font-family: 'Cormorant Garamond', serif; font-size: 1.55rem; font-weight: 500; color: var(--silver-light); line-height: 1.5; position: relative; z-index: 1; }
+    .diff-quote cite { display: block; margin-top: 1.5rem; font-family: 'Jost', sans-serif; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); font-style: normal; }
+
+    /* ══ MODELO ══ */
+    #modelo { text-align: center; }
+    .modelo-box { max-width: 700px; margin: 0 auto; background: var(--navy-3); border: 1px solid var(--border); border-radius: 4px; padding: 3.5rem; position: relative; overflow: hidden; }
+    .modelo-box::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+    .modelo-items { display: flex; gap: 2rem; margin: 2.5rem 0; flex-wrap: wrap; justify-content: center; }
+    .modelo-item { flex: 1; min-width: 200px; text-align: center; padding: 2rem 1.5rem; background: var(--navy-2); border: 1px solid rgba(255,255,255,0.06); border-radius: 4px; }
+    .modelo-item-icon { font-size: 1.8rem; margin-bottom: 1rem; display: block; }
+    .modelo-item h3 { color: var(--gold-light); font-size: 1.1rem; margin-bottom: 0.75rem; }
+    .modelo-item p { font-size: 0.88rem; line-height: 1.7; color: var(--silver); }
+    .modelo-note { font-size: 0.85rem; font-style: italic; color: var(--gold-pale); margin-top: 2rem; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 1.5rem; }
+
+    /* ══ CONTATO ══ */
+    #contato { text-align: center; }
+    .contato-intro { max-width: 580px; margin: 0 auto 3.5rem; font-size: 1.05rem; color: var(--text-muted); }
+    .contato-cards { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin-bottom: 3rem; }
+    .contato-card { background: white; border: 1px solid var(--border-faint); border-radius: 4px; padding: 2rem 2.5rem; text-align: center; min-width: 200px; box-shadow: 0 2px 12px rgba(26,42,64,0.06); transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s; }
+    .contato-card:hover { border-color: var(--gold); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(184,146,42,0.15); }
+    .contato-card-icon { font-size: 1.8rem; display: block; margin-bottom: 0.75rem; }
+    .contato-card-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 0.5rem; }
+    .contato-card-value { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--navy); font-weight: 600; }
+
+    /* ══ FOOTER ══ */
+    footer { background: #070f1c; border-top: 1px solid rgba(184,196,212,0.08); padding: 3rem 0 2rem; text-align: center; }
+    .footer-logo-letters { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 600; color: var(--silver); letter-spacing: 0.06em; }
+    .footer-logo-sub { font-size: 0.6rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); display: block; margin-top: 2px; }
+    .footer-line { width: 40px; height: 1px; background: var(--border); margin: 1.5rem auto; }
+    .footer-info { font-size: 0.8rem; color: rgba(184,196,212,0.45); line-height: 1.9; }
+    .footer-copy { margin-top: 2rem; font-size: 0.72rem; color: rgba(184,196,212,0.25); }
+
+    /* ══ ANIMATIONS ══ */
+    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .fade-in-delay-1 { transition-delay: 0.1s; }
+    .fade-in-delay-2 { transition-delay: 0.2s; }
+    .fade-in-delay-3 { transition-delay: 0.3s; }
+
+    /* ══ RESPONSIVE ══ */
+    @media (max-width: 900px) {
+      #hero { grid-template-columns: 1fr; }
+      .hero-right { display: none; }
+      .hero-left { padding: 8rem 2rem 5rem; }
+      .servicos-grid { grid-template-columns: 1fr 1fr; }
+      .servico-item--wide { grid-column: 1 / -1; }
+    }
+    @media (max-width: 768px) {
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+      #sobre .sobre-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      #diferenciais .diff-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .servicos-grid { grid-template-columns: 1fr; }
+      .section { padding: 4rem 0; }
+      .modelo-box { padding: 2rem 1.25rem; }
+    }
+    @media (max-width: 480px) {
+      h1 { font-size: 2.4rem; } h2 { font-size: 1.9rem; }
+      .contato-card { min-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <div class="container nav-inner">
+      <a href="#hero" class="nav-logo">
+        <span class="nav-logo-letters">ERM</span>
+        <span class="nav-logo-sub">Consultoria e Assessoria</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#servicos">Serviços</a></li>
+        <li><a href="#diferenciais">Diferenciais</a></li>
+        <li><a href="#modelo">Contratação</a></li>
+      </ul>
+      <a href="#contato" class="btn btn--primary nav-cta">Fale Conosco</a>
+      <button class="hamburger" id="hamburger" aria-label="Abrir menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#sobre" class="mobile-link">Sobre</a>
+    <a href="#servicos" class="mobile-link">Serviços</a>
+    <a href="#diferenciais" class="mobile-link">Diferenciais</a>
+    <a href="#modelo" class="mobile-link">Contratação</a>
+    <a href="#contato" class="mobile-link" style="color:var(--gold-light);">Fale Conosco</a>
+  </div>
+
+  <!-- ══ HERO — DARK ══ -->
+  <section id="hero">
+    <div class="hero-left">
+      <div class="hero-eyebrow fade-in">
+        <span class="hero-eyebrow-line"></span>
+        <span class="hero-eyebrow-text">Consultoria Especializada em Licitações</span>
+      </div>
+      <h1 class="hero-title fade-in fade-in-delay-1">
+        Sua empresa <em>vencendo</em><br/>licitações públicas
+      </h1>
+      <p class="hero-sub fade-in fade-in-delay-2">
+        Assessoria completa e estratégica para empresas que participam ou desejam ingressar no mercado de licitações públicas — do edital ao contrato firmado.
+      </p>
+      <div class="hero-actions fade-in fade-in-delay-3">
+        <a href="#contato" class="btn btn--primary">Fale com um especialista</a>
+        <a href="#servicos" class="btn btn--outline-dark">Conheça nossos serviços</a>
+      </div>
+    </div>
+
+    <!-- Ilustração / Banner SVG -->
+    <div class="hero-right fade-in fade-in-delay-2">
+      <svg class="hero-banner-svg" viewBox="0 0 440 400" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <linearGradient id="barGradGold" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#d4a94a"/>
+            <stop offset="100%" stop-color="#8a6018"/>
+          </linearGradient>
+          <linearGradient id="barGradSilver" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#9aaabb"/>
+            <stop offset="100%" stop-color="#4a5a6a"/>
+          </linearGradient>
+          <filter id="softglow" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="4" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+
+        <!-- Card background -->
+        <rect x="16" y="16" width="408" height="368" rx="10" fill="#0f1e38" stroke="rgba(184,146,42,0.22)" stroke-width="1.2"/>
+
+        <!-- Header strip -->
+        <rect x="16" y="16" width="408" height="50" rx="10" fill="#162847"/>
+        <rect x="16" y="52" width="408" height="14" fill="#162847"/>
+        <!-- Header dots -->
+        <circle cx="40" cy="41" r="5" fill="rgba(255,255,255,0.15)"/>
+        <circle cx="56" cy="41" r="5" fill="rgba(255,255,255,0.15)"/>
+        <circle cx="72" cy="41" r="5" fill="rgba(255,255,255,0.15)"/>
+        <text x="200" y="47" font-family="'Jost',sans-serif" font-size="11" font-weight="600" fill="#d4a94a" letter-spacing="2.5" text-anchor="middle">FATURAMENTO — LICITAÇÕES</text>
+
+        <!-- Grid lines -->
+        <line x1="70" y1="120" x2="410" y2="120" stroke="rgba(184,196,212,0.07)" stroke-width="1" stroke-dasharray="4,4"/>
+        <line x1="70" y1="165" x2="410" y2="165" stroke="rgba(184,196,212,0.07)" stroke-width="1" stroke-dasharray="4,4"/>
+        <line x1="70" y1="210" x2="410" y2="210" stroke="rgba(184,196,212,0.07)" stroke-width="1" stroke-dasharray="4,4"/>
+        <line x1="70" y1="255" x2="410" y2="255" stroke="rgba(184,196,212,0.07)" stroke-width="1" stroke-dasharray="4,4"/>
+        <line x1="70" y1="300" x2="410" y2="300" stroke="rgba(184,196,212,0.12)" stroke-width="1"/>
+
+        <!-- Y labels -->
+        <text x="62" y="304" font-family="'Jost',sans-serif" font-size="8.5" fill="rgba(184,196,212,0.35)" text-anchor="end">0</text>
+        <text x="62" y="259" font-family="'Jost',sans-serif" font-size="8.5" fill="rgba(184,196,212,0.35)" text-anchor="end">25k</text>
+        <text x="62" y="214" font-family="'Jost',sans-serif" font-size="8.5" fill="rgba(184,196,212,0.35)" text-anchor="end">50k</text>
+        <text x="62" y="169" font-family="'Jost',sans-serif" font-size="8.5" fill="rgba(184,196,212,0.35)" text-anchor="end">75k</text>
+        <text x="62" y="124" font-family="'Jost',sans-serif" font-size="8.5" fill="rgba(184,196,212,0.35)" text-anchor="end">100k</text>
+
+        <!-- Bars (silver = sem assessoria, gold = com ERM) -->
+        <!-- Jan - sem assessoria -->
+        <rect x="84" y="252" width="34" height="48" rx="3" fill="url(#barGradSilver)" opacity="0.5"/>
+        <!-- Jan - com ERM (nenhuma ainda) -->
+
+        <!-- Fev -->
+        <rect x="148" y="240" width="34" height="60" rx="3" fill="url(#barGradSilver)" opacity="0.55"/>
+
+        <!-- Mar — entrada da ERM -->
+        <rect x="212" y="210" width="34" height="90" rx="3" fill="url(#barGradGold)" opacity="0.82"/>
+
+        <!-- Abr -->
+        <rect x="276" y="163" width="34" height="137" rx="3" fill="url(#barGradGold)"/>
+
+        <!-- Mai — pico -->
+        <rect x="340" y="112" width="34" height="188" rx="3" fill="url(#barGradGold)" filter="url(#softglow)"/>
+
+        <!-- Trend line -->
+        <polyline points="101,268 165,257 229,253 293,231 357,207" fill="none" stroke="rgba(184,196,212,0.3)" stroke-width="1.5" stroke-dasharray="4,3"/>
+        <polyline points="229,253 293,181 357,127" fill="none" stroke="#d4a94a" stroke-width="2" opacity="0.85"/>
+        <circle cx="229" cy="253" r="4" fill="#d4a94a" opacity="0.8"/>
+        <circle cx="293" cy="181" r="4" fill="#d4a94a"/>
+        <circle cx="357" cy="127" r="6" fill="#d4a94a" filter="url(#softglow)"/>
+
+        <!-- Callout bubble -->
+        <rect x="300" y="88" width="108" height="32" rx="5" fill="#d4a94a"/>
+        <polygon points="340,120 350,120 345,130" fill="#d4a94a"/>
+        <text x="354" y="108" font-family="'Jost',sans-serif" font-size="11.5" font-weight="600" fill="#0b1628" text-anchor="middle">+185% receita</text>
+
+        <!-- Month labels -->
+        <text x="101" y="316" font-family="'Jost',sans-serif" font-size="9" fill="rgba(184,196,212,0.4)" text-anchor="middle">Jan</text>
+        <text x="165" y="316" font-family="'Jost',sans-serif" font-size="9" fill="rgba(184,196,212,0.4)" text-anchor="middle">Fev</text>
+        <text x="229" y="316" font-family="'Jost',sans-serif" font-size="9" fill="#d4a94a" text-anchor="middle">Mar</text>
+        <text x="293" y="316" font-family="'Jost',sans-serif" font-size="9" fill="#d4a94a" text-anchor="middle">Abr</text>
+        <text x="357" y="316" font-family="'Jost',sans-serif" font-size="9" fill="#d4a94a" text-anchor="middle">Mai</text>
+
+        <!-- "Início com ERM" marker -->
+        <line x1="212" y1="100" x2="212" y2="295" stroke="rgba(212,169,74,0.25)" stroke-width="1" stroke-dasharray="3,3"/>
+        <rect x="150" y="91" width="60" height="20" rx="3" fill="rgba(29,53,96,0.9)" stroke="rgba(184,146,42,0.4)" stroke-width="0.8"/>
+        <text x="180" y="104" font-family="'Jost',sans-serif" font-size="8.5" fill="#d4a94a" text-anchor="middle">+ ERM</text>
+
+        <!-- Gavel decorativo (canto inferior direito) -->
+        <g transform="translate(362,330) rotate(-38)" opacity="0.55">
+          <!-- Cabeça do martelo -->
+          <rect x="0" y="-7" width="38" height="14" rx="4" fill="none" stroke="rgba(184,146,42,0.6)" stroke-width="1.5"/>
+          <rect x="3" y="-4" width="32" height="8" rx="2" fill="rgba(184,146,42,0.12)"/>
+          <!-- Linha do cabo -->
+          <line x1="38" y1="0" x2="66" y2="0" stroke="rgba(184,146,42,0.45)" stroke-width="2.5" stroke-linecap="round"/>
+        </g>
+
+        <!-- R$ symbol watermark -->
+        <text x="405" y="375" font-family="'Cormorant Garamond',serif" font-size="52" font-weight="700" fill="rgba(255,255,255,0.025)" text-anchor="end">R$</text>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ══ SOBRE — LIGHT ══ -->
+  <section id="sobre" class="section section--light">
+    <div class="container">
+      <div class="sobre-grid">
+        <div class="fade-in">
+          <span class="label label--light">Quem somos</span>
+          <h2 style="color:var(--navy);">Expertise que <em style="color:var(--gold);font-style:normal;">transforma</em> resultados</h2>
+          <div class="divider"></div>
+          <p style="margin-bottom:1.25rem; color:var(--text-muted);">
+            A <strong style="color:var(--navy);">ERM Consultoria e Assessoria</strong> é uma empresa especializada em oferecer soluções completas para empresas que participam ou querem participar de licitações públicas.
+          </p>
+          <p style="margin-bottom:1.25rem; color:var(--text-muted);">
+            Nosso foco é potencializar seus resultados e aumentar seu faturamento, com suporte estratégico e operacional que aperfeiçoa sua participação no mercado.
+          </p>
+          <p style="color:var(--text-muted);">
+            Com uma equipe altamente qualificada, garantimos que sua empresa esteja sempre preparada para competir com eficiência, mantendo conformidade legal e segurança jurídica em todas as etapas do processo.
+          </p>
+        </div>
+        <div class="fade-in fade-in-delay-2">
+          <div class="sobre-card">
+            <p>"Nosso objetivo é simplificar e maximizar seus ganhos com licitações, permitindo que você foque no que faz de melhor: fornecer seus produtos ou serviços ao governo, com total segurança e sem os entraves burocráticos."</p>
+            <div style="margin-top:1.5rem; display:flex; align-items:center; gap:0.75rem;">
+              <div style="width:36px;height:1px;background:var(--gold);"></div>
+              <span style="font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);font-family:'Jost',sans-serif;">ERM Consultoria</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SERVIÇOS — DARK ══ -->
+  <section id="servicos" class="section section--dark">
+    <div class="container">
+      <div class="fade-in" style="text-align:center; margin-bottom:4rem;">
+        <span class="label label--dark">O que oferecemos</span>
+        <h2 style="color:#f5f1e8;">Serviços <em style="color:var(--gold-light);font-style:normal;">completos</em> em licitações</h2>
+        <div class="divider divider--center"></div>
+        <p style="color:var(--silver); max-width:560px; margin:0 auto; font-size:1rem;">
+          Atuamos em todas as fases do processo licitatório, do levantamento de oportunidades à gestão pós-contrato.
+        </p>
+      </div>
+
+      <div class="servicos-grid">
+
+        <div class="servico-item fade-in">
+          <div class="servico-header">
+            <div class="servico-icon-wrap">
+              <svg class="svc-svg" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+            </div>
+            <span class="servico-num">01</span>
+          </div>
+          <h3>Captação e Análise de Editais</h3>
+          <p>Identificamos editais alinhados ao seu perfil de fornecimento, filtrando as melhores oportunidades do mercado.</p>
+        </div>
+
+        <div class="servico-item fade-in fade-in-delay-1">
+          <div class="servico-header">
+            <div class="servico-icon-wrap">
+              <svg class="svc-svg" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            </div>
+            <span class="servico-num">02</span>
+          </div>
+          <h3>Preparação Documental</h3>
+          <p>Preparamos e revisamos toda a documentação exigida, eliminando risco de desclassificação por falhas burocráticas.</p>
+        </div>
+
+        <div class="servico-item fade-in fade-in-delay-2">
+          <div class="servico-header">
+            <div class="servico-icon-wrap">
+              <svg class="svc-svg" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <span class="servico-num">03</span>
+          </div>
+          <h3>Impugnações e Recursos</h3>
+          <p>Questionamos cláusulas abusivas por pedidos de esclarecimento, impugnações e recursos administrativos.</p>
+        </div>
+
+        <div class="servico-item fade-in">
+          <div class="servico-header">
+            <div class="servico-icon-wrap">
+              <svg class="svc-svg" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+            <span class="servico-num">04</span>
+          </div>
+          <h3>Elaboração de Propostas</h3>
+          <p>Suporte na elaboração de propostas técnicas e comerciais competitivas, maximizando suas chances de êxito.</p>
+        </div>
+
+        <div class="servico-item fade-in fade-in-delay-1">
+          <div class="servico-header">
+            <div class="servico-icon-wrap">
+              <svg class="svc-svg" viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+            </div>
+            <span class="servico-num">05</span>
+          </div>
+          <h3>Atuação na Fase de Lances</h3>
+          <p>Acompanhamento estratégico na fase de lances, com suporte em tempo real para decisões competitivas.</p>
+        </div>
+
+        <div class="servico-item fade-in fade-in-delay-2">
+          <div class="servico-header">
+            <div class="servico-icon-wrap">
+              <svg class="svc-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <span class="servico-num">06</span>
+          </div>
+          <h3>Gestão Pós-Contrato</h3>
+          <p>Suporte em reequilíbrios, reajustes e repactuações, preservando a rentabilidade do contrato firmado.</p>
+        </div>
+
+        <!-- 07 — wide card -->
+        <div class="servico-item servico-item--wide fade-in">
+          <div style="display:flex; gap:2.5rem; align-items:flex-start; flex-wrap:wrap;">
+            <div style="display:flex; align-items:center; gap:1rem; flex-shrink:0;">
+              <div class="servico-icon-wrap" style="width:50px;height:50px;">
+                <svg class="svc-svg" viewBox="0 0 24 24" style="width:24px;height:24px;"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+              </div>
+              <span class="servico-num" style="font-size:1.6rem;">07</span>
+            </div>
+            <div style="flex:1; min-width:200px;">
+              <h3 style="color:var(--silver-light); margin-bottom:0.65rem;">Análise da Concorrência</h3>
+              <p style="color:var(--silver); font-size:0.88rem; line-height:1.7;">
+                Avaliamos documentos e propostas de empresas vencedoras em licitações anteriores e monitoramos o mercado — marcas, produtos e fornecedores — ampliando sua visão estratégica e identificando potenciais parceiros.
+                <span style="color:var(--gold-pale); font-style:italic;"> Serviço sujeito a consulta de disponibilidade.</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ DIFERENCIAIS — LIGHT2 ══ -->
+  <section id="diferenciais" class="section section--light2">
+    <div class="container">
+      <div class="diff-grid">
+        <div class="fade-in">
+          <span class="label label--light">Por que nos escolher</span>
+          <h2 style="color:var(--navy);">Assessoria que <em style="color:var(--gold);font-style:normal;">protege</em> seu negócio</h2>
+          <div class="divider"></div>
+          <ul class="diff-list">
+            <li>
+              <span class="diff-check"></span>
+              <div>
+                <p class="diff-title">Evitar falhas documentais</p>
+                <p class="diff-desc">Revisão rigorosa de toda documentação exigida, eliminando o risco de desclassificação por erros burocráticos.</p>
+              </div>
+            </li>
+            <li>
+              <span class="diff-check"></span>
+              <div>
+                <p class="diff-title">Identificar as melhores oportunidades</p>
+                <p class="diff-desc">Monitoramento contínuo do mercado para encontrar licitações alinhadas ao perfil da sua empresa.</p>
+              </div>
+            </li>
+            <li>
+              <span class="diff-check"></span>
+              <div>
+                <p class="diff-title">Propostas mais competitivas</p>
+                <p class="diff-desc">Estratégia de precificação e elaboração técnica que posicionam sua empresa à frente dos concorrentes.</p>
+              </div>
+            </li>
+            <li>
+              <span class="diff-check"></span>
+              <div>
+                <p class="diff-title">Suporte pós-contratação</p>
+                <p class="diff-desc">Acompanhamento contínuo após a vitória para garantir execução segura e rentável do contrato.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="fade-in fade-in-delay-2">
+          <div class="diff-quote">
+            <blockquote>
+              Segurança jurídica e agilidade em cada etapa do processo licitatório. Sua empresa foca no negócio; nós cuidamos das licitações.
+            </blockquote>
+            <cite>— ERM Consultoria e Assessoria</cite>
+          </div>
+          <div style="margin-top:2rem; background:white; border:1px solid var(--border-faint); border-radius:4px; padding:2rem; box-shadow:0 2px 12px rgba(26,42,64,0.05);">
+            <p style="font-size:0.9rem; color:var(--text-muted); line-height:1.75;">
+              Com conformidade legal garantida em todas as etapas, sua empresa compete com segurança e eficiência no mercado de contratações públicas — sem os entraves burocráticos que travam quem atua sem assessoria especializada.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ MODELO — DARK2 ══ -->
+  <section id="modelo" class="section section--dark2">
+    <div class="container">
+      <div class="fade-in" style="text-align:center; margin-bottom:3.5rem;">
+        <span class="label label--dark">Modelo de contratação</span>
+        <h2 style="color:#f5f1e8;">Flexível e <em style="color:var(--gold-light);font-style:normal;">vantajoso</em> para você</h2>
+        <div class="divider divider--center"></div>
+        <p style="color:var(--silver); max-width:520px; margin:0 auto; font-size:1rem;">
+          Trabalhamos com um modelo híbrido que combina previsibilidade de investimento com total alinhamento de resultados.
+        </p>
+      </div>
+      <div class="modelo-box fade-in fade-in-delay-1">
+        <div class="modelo-items">
+          <div class="modelo-item">
+            <span class="modelo-item-icon">📄</span>
+            <h3>Valor Fixo por Participação</h3>
+            <p>Uma taxa por edital acompanhado — investimento previsível com serviço estratégico completo dedicado ao seu processo.</p>
+          </div>
+          <div class="modelo-item">
+            <span class="modelo-item-icon">🏆</span>
+            <h3>Comissão por Êxito</h3>
+            <p>Pagamento da comissão somente se sua empresa vencer a licitação. Nosso sucesso está diretamente ligado ao seu.</p>
+          </div>
+        </div>
+        <p class="modelo-note">Entre em contato para receber uma proposta personalizada com valores e condições adequados ao perfil da sua empresa.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CONTATO — LIGHT ══ -->
+  <section id="contato" class="section section--light">
+    <div class="container">
+      <div class="fade-in">
+        <span class="label label--light">Entre em contato</span>
+        <h2 style="color:var(--navy); margin-bottom:0.5rem;">Pronto para <em style="color:var(--gold);font-style:normal;">começar</em>?</h2>
+        <div class="divider divider--center"></div>
+      </div>
+      <p class="contato-intro fade-in fade-in-delay-1">
+        Nossa equipe está à disposição para esclarecer dúvidas, apresentar a proposta completa e iniciar seu processo de assessoria. Entre em contato pelo canal de sua preferência.
+      </p>
+      <div class="contato-cards fade-in fade-in-delay-2">
+        <div class="contato-card">
+          <span class="contato-card-icon">📞</span>
+          <span class="contato-card-label">Telefone</span>
+          <span class="contato-card-value">(85) 98888-4068</span>
+        </div>
+        <div class="contato-card">
+          <span class="contato-card-icon">💬</span>
+          <span class="contato-card-label">WhatsApp</span>
+          <span class="contato-card-value">(85) 99673-2111</span>
+        </div>
+      </div>
+      <div class="fade-in fade-in-delay-3" style="display:flex; justify-content:center; gap:1rem; flex-wrap:wrap;">
+        <a href="https://wa.me/5585996732111" class="btn btn--primary" target="_blank" rel="noopener">Chamar no WhatsApp</a>
+        <a href="#servicos" class="btn btn--outline-light">Ver nossos serviços</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-logo-letters">ERM</div>
+      <span class="footer-logo-sub">Consultoria e Assessoria</span>
+      <div class="footer-line"></div>
+      <p class="footer-info">
+        ERM Consultoria e Assessoria Empresarial Ltda.<br/>
+        CNPJ: 57.427.375/0001-50<br/>
+        (85) 98888-4068 &nbsp;|&nbsp; (85) 99673-2111<br/>
+        Fortaleza – Ceará
+      </p>
+      <p class="footer-copy">© 2025 ERM Consultoria e Assessoria. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 60); });
+
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+      document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+    });
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        mobileMenu.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    document.querySelectorAll('#hero .fade-in').forEach((el, i) => {
+      setTimeout(() => el.classList.add('visible'), i * 130);
+    });
+  </script>
+</body>
+</html>
