@@ -109,8 +109,7 @@
     /* ══ HERO ══ */
     #hero {
       min-height: 100vh;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+      display: flex;
       align-items: center;
       background: var(--navy);
       position: relative;
@@ -124,8 +123,15 @@
         repeating-linear-gradient(90deg, transparent, transparent 79px, rgba(184,196,212,0.03) 79px, rgba(184,196,212,0.03) 80px);
       pointer-events: none;
     }
-    .hero-left { position: relative; z-index: 1; padding: 8rem 2rem 6rem; }
-    .hero-right { position: relative; z-index: 1; display: flex; align-items: center; justify-content: center; padding: 8rem 2rem 6rem 1rem; }
+    .hero-inner {
+      position: relative; z-index: 1;
+      width: 100%; max-width: 1100px;
+      margin: 0 auto; padding: 8rem 2rem 6rem;
+      display: grid; grid-template-columns: 1fr 1fr;
+      align-items: center; gap: 4rem;
+    }
+    .hero-left { min-width: 0; }
+    .hero-right { display: flex; align-items: center; justify-content: center; min-width: 0; }
     .hero-banner-svg { width: 100%; max-width: 460px; }
 
     .hero-eyebrow { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; }
@@ -231,9 +237,8 @@
 
     /* ══ RESPONSIVE ══ */
     @media (max-width: 900px) {
-      #hero { grid-template-columns: 1fr; }
+      .hero-inner { grid-template-columns: 1fr; }
       .hero-right { display: none; }
-      .hero-left { padding: 8rem 2rem 5rem; }
       .servicos-grid { grid-template-columns: 1fr 1fr; }
       .servico-item--wide { grid-column: 1 / -1; }
     }
@@ -282,8 +287,9 @@
 
   <!-- ══ HERO — DARK ══ -->
   <section id="hero">
-    <div class="hero-left">
-      <div class="hero-eyebrow fade-in">
+    <div class="hero-inner">
+      <div class="hero-left">
+        <div class="hero-eyebrow fade-in">
         <span class="hero-eyebrow-line"></span>
         <span class="hero-eyebrow-text">Consultoria Especializada em Licitações</span>
       </div>
@@ -396,6 +402,7 @@
         <!-- R$ symbol watermark -->
         <text x="405" y="375" font-family="'Cormorant Garamond',serif" font-size="52" font-weight="700" fill="rgba(255,255,255,0.025)" text-anchor="end">R$</text>
       </svg>
+    </div>
     </div>
   </section>
 
@@ -627,21 +634,9 @@
         <div class="divider divider--center"></div>
       </div>
       <p class="contato-intro fade-in fade-in-delay-1">
-        Nossa equipe está à disposição para esclarecer dúvidas, apresentar a proposta completa e iniciar seu processo de assessoria. Entre em contato pelo canal de sua preferência.
+        Nossa equipe está à disposição para esclarecer dúvidas, apresentar a proposta completa e iniciar seu processo de assessoria. Entre em contato pelo nosso WhatsApp.
       </p>
-      <div class="contato-cards fade-in fade-in-delay-2">
-        <div class="contato-card">
-          <span class="contato-card-icon">📞</span>
-          <span class="contato-card-label">Telefone</span>
-          <span class="contato-card-value">(85) 98888-4068</span>
-        </div>
-        <div class="contato-card">
-          <span class="contato-card-icon">💬</span>
-          <span class="contato-card-label">WhatsApp</span>
-          <span class="contato-card-value">(85) 99673-2111</span>
-        </div>
-      </div>
-      <div class="fade-in fade-in-delay-3" style="display:flex; justify-content:center; gap:1rem; flex-wrap:wrap;">
+      <div class="fade-in fade-in-delay-2" style="display:flex; justify-content:center; gap:1rem; flex-wrap:wrap;">
         <a href="https://wa.me/5585996732111" class="btn btn--primary" target="_blank" rel="noopener">Chamar no WhatsApp</a>
         <a href="#servicos" class="btn btn--outline-light">Ver nossos serviços</a>
       </div>
